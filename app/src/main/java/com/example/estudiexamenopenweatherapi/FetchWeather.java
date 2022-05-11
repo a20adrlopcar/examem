@@ -62,8 +62,8 @@ public class FetchWeather extends AsyncTask<String, Void, String> {
     }
 
     private String fetchHumitat(JSONObject jsonObject) throws JSONException {
-        JSONObject main  = jsonObject.getJSONObject("main");
-        return main.getString("humidity");
+        JSONObject main  = jsonObject.getJSONObject("wind");
+        return main.getString("speed");
 
 
     }
