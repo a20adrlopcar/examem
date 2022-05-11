@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">EstudiExamenOpenWeatherApi</string>
+    <string name="speed">speed</string>
+    <string name="visibility">visibility</string>
 </resources>

@@ -34,7 +34,7 @@ public class NetworkUtils {
         String bookJSONString = null;
         try {
             //https://api.openweathermap.org/data/2.5/weather?q={city name}&appid={API key}
-            Uri builtURI = Uri.parse(BASE_WEATHER_URL +   queryString +  API_KEY_CONFIG).buildUpon()
+            Uri builtURI = Uri.parse(BASE_WEATHER_URL +   queryString + "&lang=ca" +API_KEY_CONFIG).buildUpon()
                     .build();
             System.out.println("----------LINK---------: " + builtURI);
             URL requestURL = new URL(builtURI.toString());

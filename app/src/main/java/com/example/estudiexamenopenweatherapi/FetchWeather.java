@@ -1,9 +1,7 @@
 package com.example.estudiexamenopenweatherapi;
 
 import android.os.AsyncTask;
-import android.util.Log;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import org.json.JSONArray;
@@ -15,15 +13,17 @@ import java.lang.ref.WeakReference;
 
 public class FetchWeather extends AsyncTask<String, Void, String> {
 
-    String description, humitat;
+    String description, speed,visibility;
     private static final String LOG_TAG = NetworkUtils.class.getSimpleName();
     private WeakReference<TextView> tvDescription;
-    private WeakReference<TextView> tvHumedad;
+    private WeakReference<TextView> tvspeed;
+    // private WeakReference<TextView> tVisibility;
     private WeakReference<EditText> etBuscador;
 
-    public FetchWeather(TextView tvDescription, TextView tvHumedad, EditText etBuscador) {
+    public FetchWeather(TextView tvDescription, TextView tvspeed, TextView tvVisinility,EditText etBuscador) {
         this.tvDescription = new WeakReference<>(tvDescription);
-        this.tvHumedad = new WeakReference<>(tvHumedad);
+        this.tvspeed = new WeakReference<>(tvspeed);
+        //this.tVisibility = new WeakReference<>(tvVisinility);
         this.etBuscador = new WeakReference<>(etBuscador);
 
 
@@ -43,10 +43,11 @@ public class FetchWeather extends AsyncTask<String, Void, String> {
         try {
             JSONObject jsonObject = new JSONObject(s);
             description = fetchDescription(jsonObject);
-            humitat = fetchHumitat(jsonObject);
-
+            speed = fetchspeed(jsonObject);
+            //visibility=Visinility(jsonObject);
             tvDescription.get().setText(description);
-            tvHumedad.get().setText(humitat);
+            tvspeed.get().setText(speed);
+            //tVisibility.get().setText(visibility);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -61,9 +62,15 @@ public class FetchWeather extends AsyncTask<String, Void, String> {
 
     }
 
-    private String fetchHumitat(JSONObject jsonObject) throws JSONException {
+    private String fetchspeed(JSONObject jsonObject) throws JSONException {
         JSONObject main  = jsonObject.getJSONObject("wind");
         return main.getString("speed");
+
+
+    }
+    private String Visinility(JSONObject jsonObject) throws JSONException {
+        JSONObject main  = new JSONObject();
+        return main.getString("visibility");
 
 
     }

@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -15,7 +14,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
 
-    TextView tvDescription, tvHumedad;
+    TextView tvDescription, tvspeed,tvVisinility;
     EditText etBuscador;
 
     @Override
@@ -28,7 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void NOSEQUELLAMARLO() {
         tvDescription = findViewById(R.id.tvDescription);
-        tvHumedad = findViewById(R.id.tvHumedad);
+        tvspeed = findViewById(R.id.tvspeed);
+        tvVisinility = findViewById(R.id.tvVisinility);
         etBuscador= findViewById(R.id.etBuscador);
     }
 
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public void searchWeather(View view) {
         // Get the search string from the input field.
         String queryString = etBuscador.getText().toString();
-        new FetchWeather(tvHumedad, tvDescription, etBuscador).execute(queryString);
+        new FetchWeather(tvspeed, tvDescription,tvVisinility, etBuscador).execute(queryString);
         InputMethodManager inputManager = (InputMethodManager)
                 getSystemService(Context.INPUT_METHOD_SERVICE);
 
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         }
         if (networkInfo != null && networkInfo.isConnected()
                 && queryString.length() != 0) {
-            new FetchWeather(tvHumedad, tvDescription, etBuscador).execute(queryString);
+            new FetchWeather(tvspeed, tvDescription,tvVisinility, etBuscador).execute(queryString);
         }else {
             if (queryString.length() == 0) {
                 tvDescription.setText("Error");
