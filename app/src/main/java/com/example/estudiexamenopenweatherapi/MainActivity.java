@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         tvVisinility = findViewById(R.id.tvVisinility);
         etBuscador= findViewById(R.id.etBuscador);
     }
-
+//
 
     public void searchWeather(View view) {
         // Get the search string from the input field.
